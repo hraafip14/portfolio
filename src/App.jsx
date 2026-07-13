@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import AnimatedBackground from './components/animations/AnimatedBackground';
 
 import Hero from './sections/Hero';
 import About from './sections/About';
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <div className="app">
+      <AnimatedBackground />
       <Navbar scrolled={scrolled} />
       <main>
         <Hero />

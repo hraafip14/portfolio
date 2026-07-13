@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import SplitText from '../components/animations/SplitText';
+import FadeUp from '../components/animations/FadeUp';
+import GradualBlur from '../components/animations/GradualBlur';
 
 import cert1 from '../assets/certificates/Dicoding Academy Certificate - Belajar Dasar Pemrogaraman Javascript.pdf';
 import cert2 from '../assets/certificates/Dicoding Academy Certificate - Belajar Dasar Pemrograman Web.pdf';
@@ -24,23 +31,39 @@ function Certificates() {
   return (
     <section className="section certificates" id="certificates">
       <div className="container">
-        <h2 className="section-title">Certificates</h2>
+        <h2 className="section-title">
+          <SplitText text="Certificates" delay={0.2} />
+        </h2>
         
-        <div className="certificates-grid">
+        <GradualBlur delay={0.4} blurAmount={12}>
+        <Swiper 
+          modules={[Navigation]} 
+          navigation 
+          spaceBetween={24} 
+          slidesPerView={1} 
+          breakpoints={{
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="certificates-swiper"
+        >
           {certificates.map((cert) => (
-            <div 
-              className="certificate-card" 
-              key={cert.id}
-              onClick={() => setSelectedCert(cert.file)}
-            >
-              <div className="certificate-info">
-                <h3 className="certificate-title">{cert.title}</h3>
-                <p className="certificate-provider">{cert.provider}</p>
+            <SwiperSlide key={cert.id} style={{ height: 'auto' }}>
+              <div 
+                className="certificate-card" 
+                onClick={() => setSelectedCert(cert.file)}
+                style={{ height: '100%' }}
+              >
+                <div className="certificate-info">
+                  <h3 className="certificate-title">{cert.title}</h3>
+                  <p className="certificate-provider">{cert.provider}</p>
+                </div>
+                <div className="certificate-view-btn">View Certificate &rarr;</div>
               </div>
-              <div className="certificate-view-btn">View Certificate &rarr;</div>
-            </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
+        </GradualBlur>
       </div>
 
       {selectedCert && (

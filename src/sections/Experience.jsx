@@ -1,4 +1,6 @@
 import React from 'react';
+import SplitText from '../components/animations/SplitText';
+import FadeUp from '../components/animations/FadeUp';
 
 const experiences = [
   {
@@ -14,11 +16,16 @@ function Experience() {
   return (
     <section className="section experience" id="experience">
       <div className="container">
-        <p className="section-label">Work History</p>
-        <h2 className="section-title">Experience</h2>
+        <FadeUp delay={0.1}>
+          <p className="section-label">Work History</p>
+        </FadeUp>
+        <h2 className="section-title">
+          <SplitText text="Experience" delay={0.2} />
+        </h2>
 
         {experiences.map((exp, i) => (
-          <div className="exp-item" key={i}>
+          <FadeUp delay={0.4 + (i * 0.2)} key={i}>
+          <div className="exp-item">
             <div className="exp-meta">
               <div className="exp-period">{exp.period}</div>
               <div className="exp-place">{exp.place}</div>
@@ -33,6 +40,7 @@ function Experience() {
               </div>
             </div>
           </div>
+          </FadeUp>
         ))}
       </div>
     </section>

@@ -1,14 +1,21 @@
 import React from 'react';
+import SplitText from '../components/animations/SplitText';
+import FadeUp from '../components/animations/FadeUp';
 
 function About() {
   return (
     <section className="section about" id="about">
       <div className="container">
-        <p className="section-label">About Me</p>
-        <h2 className="section-title">Let me introduce!</h2>
+        <FadeUp delay={0.1}>
+          <p className="section-label">About Me</p>
+        </FadeUp>
+        <h2 className="section-title">
+          <SplitText text="Let me introduce!" delay={0.2} />
+        </h2>
 
         <div className="about-grid">
-          <div className="about-text">
+          <FadeUp delay={0.4}>
+            <div className="about-text">
             <p>
               Hello, my name is{' '}
               <span className="about-highlight">
@@ -24,17 +31,22 @@ function About() {
               challenge, because I have great motivation and{' '}
               <span className="about-highlight">high spirit in work</span>.
             </p>
-          </div>
+            </div>
+          </FadeUp>
 
           <div className="about-stats">
-            <div className="stat-card">
-              <div className="stat-number">4+</div>
-              <div className="stat-label">Years Teaching</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">S1</div>
-              <div className="stat-label">Informatics Engineering (on going)</div>
-            </div>
+            <FadeUp delay={0.5}>
+              <div className="stat-card">
+                <div className="stat-number">4+</div>
+                <div className="stat-label">Years Teaching</div>
+              </div>
+            </FadeUp>
+            <FadeUp delay={0.6}>
+              <div className="stat-card">
+                <div className="stat-number">S1</div>
+                <div className="stat-label">Informatics Engineering (on going)</div>
+              </div>
+            </FadeUp>
           </div>
         </div>
       </div>

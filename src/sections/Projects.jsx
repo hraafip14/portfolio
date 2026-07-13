@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import SplitText from '../components/animations/SplitText';
+import FadeUp from '../components/animations/FadeUp';
+import GradualBlur from '../components/animations/GradualBlur';
 import forPal from "../assets/for-pal.png";
 import notes from "../assets/notes.png";
 
@@ -34,7 +41,7 @@ const projects = [
   },
   {
     type: 'Web Development',
-    name: 'Web App Using React',
+    name: 'Personal Notes Web App Using React',
     desc: 'A final project of "Belajar Membuat Aplikasi Web dengan React" at Dicoding Academy.',
     tech: ['React', 'HTML', 'CSS', 'JavaScript'],
     icon: notes,
@@ -68,19 +75,31 @@ function Projects() {
   return (
     <section className="section projects" id="projects">
       <div className="container">
-        <h2 className="section-title">Projects</h2>
+        <h2 className="section-title">
+          <SplitText text="Projects" delay={0.2} />
+        </h2>
 
-        <div className="projects-grid">
+        <GradualBlur delay={0.4} blurAmount={12}>
+        <Swiper 
+          modules={[Navigation]} 
+          navigation 
+          spaceBetween={24} 
+          slidesPerView={1} 
+          breakpoints={{
+            768: { slidesPerView: 2 }
+          }}
+          className="projects-swiper"
+        >
           {projects.map((proj, i) => {
             const isClickable = (proj.images && proj.images.length > 0) || proj.link;
             return (
-              <div 
-                className="project-card" 
-                key={i} 
-                onClick={() => handleCardClick(proj)} 
-                style={{ cursor: isClickable ? 'pointer' : 'default' }}
-              >
-                <div className="project-thumb">
+              <SwiperSlide key={i} style={{ height: 'auto' }}>
+                <div
+                  className="project-card"
+                  onClick={() => handleCardClick(proj)}
+                  style={{ cursor: isClickable ? 'pointer' : 'default', height: '100%' }}
+                >
+                  <div className="project-thumb">
                   {typeof proj.icon === 'string' && !proj.icon.startsWith('/') && !proj.icon.startsWith('.') && !proj.icon.startsWith('data:') && !proj.icon.includes('static/media') && proj.icon.length < 10 ? (
                     <span style={{ fontSize: 48, opacity: 0.4 }}>{proj.icon}</span>
                   ) : (
@@ -97,27 +116,29 @@ function Projects() {
                     ))}
                   </div>
                 </div>
-              </div>
+                </div>
+              </SwiperSlide>
             );
           })}
-        </div>
+        </Swiper>
+        </GradualBlur>
       </div>
 
       {modalImages && (
         <div className="modal-overlay" onClick={() => setModalImages(null)}>
           <div className="modal-content image-modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={() => setModalImages(null)}>×</button>
-            
+
             <div className="carousel-container">
               <button className="carousel-btn prev-btn" onClick={prevImage}>&#10094;</button>
               <img src={modalImages[currentImgIndex]} alt={`Screenshot ${currentImgIndex + 1}`} className="carousel-image" />
               <button className="carousel-btn next-btn" onClick={nextImage}>&#10095;</button>
             </div>
-            
+
             <div className="carousel-dots">
               {modalImages.map((_, idx) => (
-                <span 
-                  key={idx} 
+                <span
+                  key={idx}
                   className={`dot ${idx === currentImgIndex ? 'active' : ''}`}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -126,7 +147,7 @@ function Projects() {
                 ></span>
               ))}
             </div>
-            
+
           </div>
         </div>
       )}

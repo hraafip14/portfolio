@@ -121,6 +121,7 @@ ul {
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--white);
+  display: none;
 }
 
 .nav-logo span {
@@ -143,6 +144,48 @@ ul {
 
 .nav-links a:hover {
   color: var(--white);
+}
+
+/* Hamburger Button (hidden on desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 120;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hamburger-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--white);
+  transition: transform 0.3s, opacity 0.3s;
+  border-radius: 2px;
+}
+
+.hamburger.active .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Nav Overlay */
+.nav-overlay {
+  display: none;
 }
 
 /* ========================================
@@ -992,64 +1035,586 @@ ul {
 /* ========================================
    RESPONSIVE
    ======================================== */
+
+/* Prevent horizontal overflow on all screens */
+html, body {
+  overflow-x: hidden;
+}
+
+/* ---- Tablet Landscape (≤ 1024px) ---- */
+@media (max-width: 1024px) {
+  :root {
+    --container: 900px;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr 360px;
+    gap: 60px;
+  }
+
+  .hero-tag {
+    font-size: 36px;
+  }
+
+  .about-grid {
+    gap: 48px;
+  }
+
+  .exp-item {
+    grid-template-columns: 160px 1fr;
+    gap: 32px;
+  }
+}
+
+/* ---------- Tablet Portrait (≤ 900px) – hamburger menu ---------- */
 @media (max-width: 900px) {
+  /* ── Navbar ── */
+  .navbar {
+    justify-content: space-between;
+    padding: 16px 24px;
+  }
+
+  .nav-logo {
+    display: block;
+  }
+
+  .hamburger {
+    display: flex;
+    /* Ensure 44×44 minimum touch target */
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Overlay – always in DOM; toggled via .visible class */
+  .nav-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 105;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Side-drawer nav */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(280px, 80vw);
+    height: 100dvh; /* dynamic viewport height – safe on iOS */
+    background: var(--dark);
+    border-left: 1px solid var(--border);
+    flex-direction: column;
+    gap: 0;
+    padding: 76px 0 32px;
+    z-index: 110;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: flex;
+    align-items: center;
+    min-height: 52px; /* comfortable touch target */
+    padding: 0 32px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:active {
+    background: rgba(200, 184, 154, 0.08);
+    color: var(--white);
+  }
+
+  /* ── Hero ── */
   .hero-inner {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 40px;
+    padding: 0 24px;
   }
 
   .hero-image-frame {
-    max-width: 300px;
+    max-width: 260px;
     margin: 0 auto;
+    order: -1; /* image appears above text */
   }
 
   .hero-tag {
     justify-content: center;
-  }
-
-  .hero-tag::before {
-    display: none;
+    font-size: 32px;
   }
 
   .hero-desc {
-    margin: 0 auto 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 36px;
   }
 
   .hero-cta-group {
     justify-content: center;
   }
 
+  /* ── Grids → single column ── */
   .about-grid,
   .edu-grid,
-  .skills-grid,
-  .projects-grid {
+  .skills-grid {
     grid-template-columns: 1fr;
   }
 
-  .exp-item {
-    grid-template-columns: 1fr;
+  .about-grid {
+    gap: 40px;
+  }
+
+  /* ── About stats: 2 columns on tablet ── */
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
 
-  .nav-links {
+  /* ── Experience ── */
+  .exp-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 32px 0;
+  }
+
+  .exp-title {
+    font-size: 22px;
+  }
+
+  /* ── Modal ── */
+  .modal-overlay {
+    padding: 20px;
+  }
+
+  .modal-content {
+    height: 82vh;
+  }
+
+  .image-modal-content {
+    padding: 24px;
+    height: 80vh;
+  }
+
+  .carousel-btn {
+    padding: 8px 12px;
+    font-size: 20px;
+  }
+}
+
+/* ---------- Mobile (≤ 600px) ---------- */
+@media (max-width: 600px) {
+  :root {
+    --section-gap: 72px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  /* ── Section typography ── */
+  .section-title {
+    font-size: clamp(26px, 7vw, 38px);
+    margin-bottom: 28px;
+  }
+
+  .section-label {
+    font-size: 10px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 96px 0 56px;
+  }
+
+  .hero-inner {
+    gap: 28px;
+    padding: 0 16px;
+  }
+
+  .hero-image-frame {
+    max-width: 200px;
+  }
+
+  .hero-image-frame::before {
     display: none;
+  }
+
+  .hero-bg-text {
+    font-size: clamp(60px, 18vw, 100px);
+    opacity: 0.015;
+  }
+
+  .hero-tag {
+    font-size: 24px;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+
+  .hero-name {
+    font-size: clamp(30px, 9vw, 46px);
+    margin-bottom: 16px;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 20px;
+    font-size: 12px;
+    min-height: 48px; /* touch target */
+  }
+
+  .hero-scroll-hint {
+    display: none;
+  }
+
+  /* ── About ── */
+  .about-text p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  /* About stats: 2 columns on mobile too */
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 18px 14px;
+  }
+
+  .stat-number {
+    font-size: 28px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
+
+  /* ── Education ── */
+  .edu-card {
+    padding: 24px 20px;
+  }
+
+  .edu-school {
+    font-size: 17px;
+  }
+
+  .edu-degree {
+    font-size: 13px;
+  }
+
+  /* ── Experience ── */
+  .exp-item {
+    padding: 24px 0;
+  }
+
+  .exp-title {
+    font-size: 19px;
+  }
+
+  .exp-desc {
+    font-size: 13px;
+  }
+
+  .exp-tag {
+    font-size: 10px;
+    padding: 4px 10px;
+    min-height: 28px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* ── Skills ── */
+  .tech-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .tech-item {
+    padding: 14px 8px;
+    font-size: 11px;
+  }
+
+  .ability-item {
+    padding: 13px 14px;
+    gap: 12px;
+    min-height: 44px;
+  }
+
+  .ability-name {
+    font-size: 13px;
+  }
+
+  /* ── Certificates ── */
+  .certificate-card {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .certificate-title {
+    font-size: 14px;
+  }
+
+  .certificate-provider {
+    font-size: 11px;
+  }
+
+  .certificate-view-btn {
+    font-size: 12px;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* ── Projects ── */
+  .project-body {
+    padding: 18px;
+  }
+
+  .project-name {
+    font-size: 17px;
+  }
+
+  .project-desc {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .project-tech span {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+
+  /* ── Contact ── */
+  .contact-tagline {
+    font-size: 14px;
+    margin-bottom: 36px;
+    padding: 0 8px;
+  }
+
+  .contact-links {
+    max-width: 100%;
+    margin-bottom: 36px;
+  }
+
+  .contact-link {
+    padding: 15px 18px;
+    font-size: 13px;
+    gap: 12px;
+    min-height: 52px;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    padding-top: 28px;
+  }
+
+  /* ── Modal – bottom-sheet style ── */
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal-content {
+    height: 88vh;
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 26px;
+    background: rgba(0, 0, 0, 0.65);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    z-index: 10;
+    color: var(--white);
+    cursor: pointer;
+  }
+
+  .image-modal-content {
+    padding: 48px 14px 14px; /* extra top padding for close button */
+    height: 78vh;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .carousel-btn {
+    padding: 6px 10px;
+    font-size: 16px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .carousel-dots .dot {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* ---------- Small Mobile (≤ 400px) ---------- */
+@media (max-width: 400px) {
+  :root {
+    --section-gap: 56px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  .navbar {
+    padding: 12px 14px;
+  }
+
+  .hero-tag {
+    font-size: 20px;
+  }
+
+  .hero-name {
+    font-size: clamp(24px, 8.5vw, 34px);
+  }
+
+  .hero-image-frame {
+    max-width: 170px;
+  }
+
+  /* 2 columns for very small screens */
+  .tech-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .tech-item {
+    padding: 12px 6px;
+    font-size: 11px;
+  }
+
+  /* 1 column stats on very small */
+  .about-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-link {
+    padding: 13px 14px;
+    font-size: 12px;
+  }
+
+  .edu-card {
+    padding: 20px 16px;
+  }
+}
+
+/* ========================================
+   SWIPER OVERRIDES
+   ======================================== */
+.projects-swiper,
+.certificates-swiper {
+  padding: 10px 56px !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--accent) !important;
+  width: 44px !important;
+  height: 44px !important;
+}
+
+.swiper-button-prev {
+  left: 4px !important;
+}
+
+.swiper-button-next {
+  right: 4px !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: var(--white) !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px !important;
+}
+
+@media (max-width: 900px) {
+  .projects-swiper,
+  .certificates-swiper {
+    padding: 10px 48px !important;
   }
 }
 
 @media (max-width: 600px) {
-  :root {
-    --section-gap: 80px;
+  .projects-swiper,
+  .certificates-swiper {
+    padding: 8px 36px !important;
   }
 
-  .container {
-    padding: 0 20px;
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 15px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .projects-swiper,
+  .certificates-swiper {
+    padding: 8px 28px !important;
   }
 
-  .tech-list {
-    grid-template-columns: repeat(2, 1fr);
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 28px !important;
+    height: 28px !important;
   }
 
-  .about-stats {
-    grid-template-columns: 1fr;
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 12px !important;
   }
 }

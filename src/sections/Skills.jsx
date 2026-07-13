@@ -5,6 +5,8 @@ import cssIcon from '../assets/icons/css.png';
 import jsIcon from '../assets/icons/javascript.png';
 import reactIcon from '../assets/icons/react.png';
 import netbeansIcon from '../assets/icons/netbeans.png';
+import SplitText from '../components/animations/SplitText';
+import FadeUp from '../components/animations/FadeUp';
 
 const techStack = [
   { name: 'HTML',       icon: htmlIcon },
@@ -27,31 +29,41 @@ function Skills() {
   return (
     <section className="section skills" id="skills">
       <div className="container">
-        <h2 className="section-title">Skills</h2>
+        <h2 className="section-title">
+          <SplitText text="Skills" delay={0.2} />
+        </h2>
 
         <div className="skills-grid">
           <div>
-            <h3 className="skills-block-title">Tech Stack</h3>
+            <FadeUp delay={0.3}>
+              <h3 className="skills-block-title">Tech Stack</h3>
+            </FadeUp>
             <div className="tech-list">
               {techStack.map((tech, i) => (
-                <div className="tech-item" key={i}>
+                <FadeUp delay={0.4 + (i * 0.1)} key={i}>
+                <div className="tech-item">
                   <span className="tech-icon">
                     <img src={tech.icon} alt={tech.name} className="tech-icon-img" />
                   </span>
                   {tech.name}
                 </div>
+                </FadeUp>
               ))}
             </div>
           </div>
 
           <div>
-            <h3 className="skills-block-title">Other Abilities</h3>
+            <FadeUp delay={0.3}>
+              <h3 className="skills-block-title">Other Abilities</h3>
+            </FadeUp>
             <div className="ability-list">
               {otherAbilities.map((ability, i) => (
-                <div className="ability-item" key={i}>
+                <FadeUp delay={0.4 + (i * 0.1)} key={i}>
+                <div className="ability-item">
                   <span className="ability-dot" />
                   <span className="ability-name">{ability}</span>
                 </div>
+                </FadeUp>
               ))}
             </div>
           </div>
