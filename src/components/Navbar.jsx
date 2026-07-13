@@ -21,9 +21,6 @@ function Navbar({ scrolled }) {
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <a href="#hero" className="nav-logo">
-        H<span>.</span>
-      </a>
 
       <button
         className={`hamburger ${menuOpen ? 'active' : ''}`}
