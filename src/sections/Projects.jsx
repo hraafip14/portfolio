@@ -45,7 +45,7 @@ const projects = [
     desc: 'A final project of "Belajar Membuat Aplikasi Web dengan React" at Dicoding Academy.',
     tech: ['React', 'HTML', 'CSS', 'JavaScript'],
     icon: notes,
-    link: 'my-personal-notes/index.html',
+    link: '/notes/index.html',
   }
 ];
 
