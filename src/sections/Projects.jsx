@@ -63,8 +63,7 @@ const projects = [
       { name: 'JavaScript', icon: JavaScript }
     ],
     icon: notes,
-    link: 'my-personal-notes/index.html',
-    glowColors: ['#61dafb', '#ff5252', '#d3a3a3'],
+    link: '/notes/index.html',
   }
 ];
 
