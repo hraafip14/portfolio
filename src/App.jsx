@@ -10,7 +10,8 @@ import Skills from './sections/Skills';
 import Certificates from './sections/Certificates';
 import Projects from './sections/Projects';
 import Contact from './sections/Contact';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,14 +25,14 @@ function App() {
   return (
     <div className="app">
       <AnimatedBackground />
-      <Navbar scrolled={scrolled} />
+      {/* <Navbar scrolled={scrolled} /> */}
+      <Sidebar />
       <main>
         <Hero />
         <About />
-        <Education />
         <Experience />
         <Skills />
-        <Certificates />
+        {/* <Certificates /> */}
         <Projects />
         <Contact />
       </main>
