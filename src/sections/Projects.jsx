@@ -17,6 +17,13 @@ import daImg6 from "../assets/desktop-app/data-pelanggan.png";
 import daImg7 from "../assets/desktop-app/data-penyedia.png";
 import daImg8 from "../assets/desktop-app/pengiriman-barang.png";
 
+import faImg1 from "../assets/final-project/data-training.png";
+import faImg2 from "../assets/final-project/pohon-keputusan.png";
+import faImg3 from "../assets/final-project/langkah-perhitungan.png";
+import faImg4 from "../assets/final-project/data-guru.png";
+import faImg5 from "../assets/final-project/prediksi.png";
+import faImg6 from "../assets/final-project/laporan.png";
+
 import Java from "../assets/icons/java.png";
 import NetBeans from "../assets/icons/netbeans.png";
 import HTML from "../assets/icons/html.png";
@@ -25,12 +32,13 @@ import JavaScript from "../assets/icons/javascript.png";
 import IconReact from "../assets/icons/react.png";
 
 const desktopAppImages = [daImg1, daImg2, daImg3, daImg4, daImg5, daImg6, daImg7, daImg8];
+const finalProjectImages = [faImg1, faImg2, faImg3, faImg4, faImg5, faImg6];
 
 const projects = [
   {
     type: 'Desktop Application',
-    name: 'Project Desktop App',
-    desc: 'A desktop application built as part of informatics engineering coursework, exploring GUI development and application logic.',
+    name: 'Inventory Management App',
+    desc: 'A desktop application developed as the final project for the Visual Programming course at Universitas Indraprasta PGRI and implemented during the KKP course (Kuliah Kerja Praktik) for use by a building supply store.',
     tech: [
       { name: 'Java', icon: Java },
       { name: 'NetBeans', icon: NetBeans }
@@ -63,8 +71,21 @@ const projects = [
       { name: 'JavaScript', icon: JavaScript }
     ],
     icon: notes,
-    link: 'my-personal-notes/index.html',
+    link: 'notes/index.html',
     glowColors: ['#61dafb', '#ff5252', '#d3a3a3'],
+  },
+  {
+    type: 'Desktop Application',
+    name: 'Quran Memorization Prediction System',
+    desc: 'A desktop application designed to predict the results of Quran memorization certification at SDIT Arkan Cendekia using the Decision Tree method.',
+    tech: [
+      { name: 'Java', icon: Java },
+      { name: 'NetBeans', icon: NetBeans }
+    ],
+    icon: finalProjectImages[0],
+    images: finalProjectImages,
+    link: '',
+    glowColors: ['#ff5252', '#d3a3a3', '#ff8a80'],
   }
 ];
 
