@@ -12,6 +12,7 @@ import Projects from './sections/Projects';
 import Contact from './sections/Contact';
 // import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import ClickSpark from './components/ClickSpark';
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -28,13 +29,26 @@ function App() {
       {/* <Navbar scrolled={scrolled} /> */}
       <Sidebar />
       <main>
-        <Hero />
+        <ClickSpark sparkColor="#ff5252" sparkSize={10} sparkRadius={100} sparkCount={10} duration={2000}>
+          <Hero />
+        </ClickSpark>
+        
         <About />
-        <Experience />
+        
+        <ClickSpark sparkColor="#ff5252" sparkSize={10} sparkRadius={100} sparkCount={10} duration={2000}>
+          <Experience />
+        </ClickSpark>
+        
         <Skills />
-        {/* <Certificates /> */}
-        <Projects />
-        <Contact />
+        
+        <ClickSpark sparkColor="#ff5252" sparkSize={10} sparkRadius={100} sparkCount={10} duration={2000}>
+          {/* <Certificates /> */}
+          <Projects />
+        </ClickSpark>
+        
+        <ClickSpark sparkColor="#ff5252" sparkSize={10} sparkRadius={100} sparkCount={10} duration={2000}>
+          <Contact />
+        </ClickSpark>
       </main>
     </div>
   );

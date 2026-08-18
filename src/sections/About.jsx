@@ -93,7 +93,7 @@ function About() {
 
       <AnimatedModal isOpen={!!selectedEdu} onClose={() => setSelectedEdu(null)} className="item">
         {selectedEdu && (
-          <div style={{ padding: '0.5rem' }}>
+          <div className="modal-edu-content">
             <h2>{selectedEdu.school}</h2>
             <h3>{selectedEdu.period}</h3>
             {Array.isArray(selectedEdu.activities) ? (
@@ -156,9 +156,9 @@ function About() {
               gap={0}
               pixelRadius={0}
               pixelSpin={65}
-              pixelScale={0.5}
-              duration={800}
-              pixelDuration={450}
+              pixelScale={1}
+              duration={1500}
+              pixelDuration={500}
               pattern="random"
               randomness={0}
               fade

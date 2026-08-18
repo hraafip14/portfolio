@@ -167,7 +167,8 @@ function Contact() {
           modules={[Navigation]}
           navigation={true}
           spaceBetween={16}
-          slidesPerView={1}
+          slidesPerView={3}
+          centeredSlides={true}
           className="certificates-swiper"
           onSlideChange={(swiper) => setSelectedCert(certificates[swiper.realIndex].file)}
         >
@@ -181,7 +182,7 @@ function Contact() {
                   height="auto"
                   borderRadius={12}
                   brightness="12%"
-                  blur="20px"
+                  blur="60px"
                   backgroundOpacity={selectedCert === cert.file ? 0.2 : 0}
                   distortionScale={0}
                   className={`modal-cert-glass-card ${selectedCert === cert.file ? 'active-cert' : ''}`}
