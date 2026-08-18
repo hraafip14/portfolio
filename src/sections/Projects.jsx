@@ -71,8 +71,21 @@ const projects = [
       { name: 'JavaScript', icon: JavaScript }
     ],
     icon: notes,
-    link: 'my-personal-notes/index.html',
+    link: 'notes/index.html',
     glowColors: ['#61dafb', '#ff5252', '#d3a3a3'],
+  },
+  {
+    type: 'Desktop Application',
+    name: 'Quran Memorization Prediction System',
+    desc: 'A desktop application designed to predict the results of Quran memorization certification at SDIT Arkan Cendekia using the Decision Tree method.',
+    tech: [
+      { name: 'Java', icon: Java},
+      { name: 'NetBeans', icon: NetBeans}
+    ],
+    icon: finalProjectImages[0],
+    images: finalProjectImages,
+    link: '',
+    glowColors: ['#ff5252', '#d3a3a3', '#ff8a80'],
   }
 ];
 
