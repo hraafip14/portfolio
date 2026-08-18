@@ -167,7 +167,17 @@ function Contact() {
           modules={[Navigation]}
           navigation={true}
           spaceBetween={16}
-          slidesPerView={3}
+          slidesPerView={1}
+          breakpoints={{
+            520: {
+              slidesPerView: 2,
+              spaceBetween: 12,
+            },
+            840: {
+              slidesPerView: 3,
+              spaceBetween: 16,
+            },
+          }}
           centeredSlides={true}
           className="certificates-swiper"
           onSlideChange={(swiper) => setSelectedCert(certificates[swiper.realIndex].file)}
@@ -175,10 +185,11 @@ function Contact() {
           {certificates.map((cert) => (
             <SwiperSlide key={cert.id} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <div
-                style={{ maxWidth: 'calc(100% - 90px)', margin: '0 auto' }}
+                style={{ width: '100%', maxWidth: '280px', margin: '0 auto', cursor: 'pointer' }}
+                onClick={() => setSelectedCert(cert.file)}
               >
                 <GlassSurface
-                  width="auto"
+                  width="100%"
                   height="auto"
                   borderRadius={12}
                   brightness="12%"
