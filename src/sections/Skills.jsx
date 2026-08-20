@@ -59,7 +59,7 @@ function Skills() {
               <div className="tech-list">
                 {techStack.map((tech, i) => (
                   <FadeUp delay={0.4 + (i * 0.1)} key={i}>
-                  <div className="tech-item">
+                  <div className="tech-item cursor-target">
                     <span className="tech-icon">
                       <img src={tech.icon} alt={tech.name} className="tech-icon-img" />
                     </span>
@@ -77,7 +77,7 @@ function Skills() {
               <div className="ability-list">
                 {otherAbilities.map((ability, i) => (
                   <FadeUp delay={0.4 + (i * 0.1)} key={i}>
-                  <div className="ability-item">
+                  <div className="ability-item cursor-target">
                     <span className="ability-dot" />
                     <span className="ability-name">{ability}</span>
                   </div>

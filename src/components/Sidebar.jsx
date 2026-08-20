@@ -57,21 +57,19 @@ function Sidebar() {
     }
   }, []);
 
+  const progressPercent = `${(activeIndex / (NAV_ITEMS.length - 1)) * 100}%`;
+
   return (
     <aside
       className={`sidebar ${hovered ? 'sidebar--expanded' : ''}`}
+      style={{ '--sidebar-progress': progressPercent }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => { setHovered(false); setHoveredIndex(null); }}
     >
       <div className="sidebar-track">
         {/* Progress line */}
         <div className="sidebar-line">
-          <div
-            className="sidebar-line-fill"
-            style={{
-              height: `${(activeIndex / (NAV_ITEMS.length - 1)) * 100}%`
-            }}
-          />
+          <div className="sidebar-line-fill" />
         </div>
 
         {/* Dots */}

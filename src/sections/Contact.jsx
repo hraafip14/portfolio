@@ -7,7 +7,6 @@ import SplitText from '../components/animations/SplitText';
 import FadeUp from '../components/animations/FadeUp';
 import TextLoop from '../components/animations/TextLoop';
 import AnimatedModal from '../components/animations/AnimatedModal';
-import GlassSurface from '../components/GlassSurface';
 
 import waIcon from '../assets/icons/whatsapp.png';
 import instagramIcon from '../assets/icons/instagram.png';
@@ -91,20 +90,11 @@ function Contact() {
                   rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   aria-label={link.label}
                 >
-                  <GlassSurface
-                    width={48}
-                    height={48}
-                    borderRadius={24}
-                    brightness="12%"
-                    blur="20px"
-                    backgroundOpacity={0}
-                    distortionScale={0}
-                    className="contact-glass-btn cursor-target"
-                  >
+                  <div className="contact-btn cursor-target">
                     <span className="contact-link-icon">
                       <img src={link.icon} alt={link.label} className="contact-link-icon-img" />
                     </span>
-                  </GlassSurface>
+                  </div>
                 </a>
                 <span className="contact-tooltip">{link.value}</span>
               </div>
@@ -119,19 +109,9 @@ function Contact() {
               onClick={handleOpenModal}
               style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit' }}
             >
-              <GlassSurface
-                width="auto"
-                height={46}
-                borderRadius={23}
-                brightness="12%"
-                blur="20px"
-                backgroundOpacity={0}
-                distortionScale={0}
-                className="contact-glass-btn cert-glass-btn cursor-target"
-                style={{ padding: '0 24px' }}
-              >
+              <div className="contact-btn cert-btn cursor-target">
                 <span className="cert-btn-text">View Certificates</span>
-              </GlassSurface>
+              </div>
             </button>
           </div>
         </FadeUp>
@@ -188,27 +168,17 @@ function Contact() {
                 style={{ width: '100%', maxWidth: '280px', margin: '0 auto', cursor: 'pointer' }}
                 onClick={() => setSelectedCert(cert.file)}
               >
-                <GlassSurface
-                  width="100%"
-                  height="auto"
-                  borderRadius={12}
-                  brightness="12%"
-                  blur="60px"
-                  backgroundOpacity={selectedCert === cert.file ? 0.2 : 0}
-                  distortionScale={0}
-                  className={`modal-cert-glass-card ${selectedCert === cert.file ? 'active-cert' : ''}`}
+                <div
+                  className={`modal-cert-card cursor-target ${selectedCert === cert.file ? 'active-cert' : ''}`}
                   style={{
-                    border: selectedCert === cert.file ? '1px solid var(--accent)' : '1px solid rgba(255, 255, 255, 0.08)',
-                    boxShadow: selectedCert === cert.file ? '0 0 16px rgba(255, 82, 82, 0.35)' : 'none',
-                    padding: '8px 16px',
-                    transition: 'all 0.25s ease'
+                    padding: '10px 16px',
                   }}
                 >
                   <div className="certificate-info" style={{ width: '100%', maxWidth: '100%', textAlign: 'center' }}>
                     <h3 className="certificate-title" style={{ fontSize: '13px', marginBottom: '2px', whiteSpace: 'normal', wordBreak: 'break-word', overflowWrap: 'break-word', lineHeight: '1.3' }}>{cert.title}</h3>
                     <p className="certificate-provider" style={{ fontSize: '11px' }}>{cert.provider}</p>
                   </div>
-                </GlassSurface>
+                </div>
               </div>
             </SwiperSlide>
           ))}

@@ -46,7 +46,8 @@ const projects = [
     icon: desktopAppImages[0],
     images: desktopAppImages,
     link: '',
-    glowColors: ['#ff5252', '#d3a3a3', '#ff8a80'],
+    glowColors: ['#ffffff', '#a8a8a8', '#000000'],
+    glowColor: '0 0 90',
   },
   {
     type: 'Web Development',
@@ -58,7 +59,8 @@ const projects = [
     ],
     icon: forPal,
     link: 'my-web/index.html',
-    glowColors: ['#ff5252', '#ff8a80', '#e6e6e6'],
+    glowColors: ['#ff5252', '#000000', '#ffffff'],
+    glowColor: '0 90 60',
   },
   {
     type: 'Web Development',
@@ -72,7 +74,8 @@ const projects = [
     ],
     icon: notes,
     link: 'notes/index.html',
-    glowColors: ['#61dafb', '#ff5252', '#d3a3a3'],
+    glowColors: ['#000000', '#888888', '#ffffff'],
+    glowColor: '0 0 85',
   },
   {
     type: 'Desktop Application',
@@ -85,7 +88,8 @@ const projects = [
     icon: finalProjectImages[0],
     images: finalProjectImages,
     link: '',
-    glowColors: ['#ff5252', '#d3a3a3', '#ff8a80'],
+    glowColors: ['#38bdf8', '#94a3b8', '#ffffff'],
+    glowColor: '198 90 65',
   }
 ];
 
@@ -127,7 +131,7 @@ function Projects() {
                 <FadeUp key={i} delay={0.2 + i * 0.15}>
                   <BorderGlow
                     edgeSensitivity={35}
-                    glowColor="0 80 70"
+                    glowColor={proj.glowColor || '0 0 80'}
                     backgroundColor="#1a1a1a"
                     borderRadius={16}
                     glowRadius={60}

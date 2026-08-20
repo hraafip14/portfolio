@@ -6,7 +6,6 @@ import TargetCursor from '../components/TargetCursor';
 import ElectricBorder from '../components/ElectricBorder';
 import AnimatedModal from '../components/animations/AnimatedModal';
 import PixelBlast from '../components/PixelBlast';
-import GlassSurface from '../components/GlassSurface';
 
 const educationData = [
   {
@@ -30,32 +29,17 @@ const educationData = [
 ];
 
 function EduCard({ edu, onSelect }) {
-  const [hovered, setHovered] = useState(false);
-
   return (
-    <GlassSurface
-      width="100%"
-      height="100%"
-      borderRadius={16}
-      backgroundOpacity={hovered ? 0.13 : 0}
-      blur="30px"
-      brightness="8%"
-      saturation={1}
-      distortionScale={0}
+    <div
       className="edu-card cursor-target"
-      style={{ cursor: 'pointer', flex: 1 }}
+      onClick={() => onSelect(edu)}
     >
-      <div
-        className="edu-card-inner"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        onClick={() => onSelect(edu)}
-      >
+      <div className="edu-card-inner">
         <span className="edu-period">{edu.period}</span>
         <div className="edu-school">{edu.school}</div>
         <div className="edu-degree">{edu.degree}</div>
       </div>
-    </GlassSurface>
+    </div>
   );
 }
 
