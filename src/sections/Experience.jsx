@@ -4,11 +4,18 @@ import FadeUp from '../components/animations/FadeUp';
 
 const experiences = [
   {
-    period: '2026 - present',
+    period: '2026 – present',
     place: 'Ruangguru',
     location: 'Depok',
     title: 'Master Teacher Kalananti',
     tags: ['Part Time Teacher', 'Design a lesson plan', 'Hybrid session class', 'Teaching Coding with ScratchJr, Scratch, MIT App Inventor, and Python.'],
+  },
+  {
+    period: '2025 – 2026',
+    place: 'Toko Bangunan Dinda Jaya',
+    location: 'Tambun, Bekasi',
+    title: 'Kuliah Kerja Praktik',
+    tags: ['Built Inventory Management Desktop App with NetBeans using Java and MySQL for database management.', 'Assigned as the lead programmer for the application development', 'Assisting with the writing of the documentation and practical report'],
   },
   {
     period: '2022 – 2026',
@@ -38,8 +45,8 @@ function Experience() {
             {/* Tabs List */}
             <div className="exp-tabs-container">
               {experiences.map((exp, i) => (
-                <button 
-                  key={i} 
+                <button
+                  key={i}
                   className={`exp-tab-btn ${activeTab === i ? 'active' : ''}`}
                   onClick={() => setActiveTab(i)}
                 >

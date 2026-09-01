@@ -23,6 +23,7 @@ const otherAbilities = [
   'Basic English',
   'Teaching',
   'Editing Video',
+  'Photography',
   'Microsoft Office',
 ];
 

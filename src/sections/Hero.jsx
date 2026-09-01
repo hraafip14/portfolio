@@ -12,10 +12,10 @@ function Hero() {
   const timerRef = useRef(null);
 
   const greetings = [
-    "Hello!", 
-    "Nice to meet you! 😄", 
-    "You wanna know about me? 👀", 
-    "Hi there! 👋", 
+    "Hello!",
+    "Nice to meet you! 😄",
+    "You wanna know about me? 👀",
+    "Hi there! 👋",
     "Welcome to my portfolio!",
     "What's your fav song?",
     "What's your fav movie?",
@@ -26,15 +26,15 @@ function Hero() {
   const handleImageClick = (e) => {
     e.stopPropagation();
     if (timerRef.current) clearTimeout(timerRef.current);
-    
+
     let newGreeting = greetings[Math.floor(Math.random() * greetings.length)];
     if (newGreeting === greeting) {
       newGreeting = greetings[(greetings.indexOf(greeting) + 1) % greetings.length];
     }
-    
+
     setGreeting(newGreeting);
     setPopoverOpen(true);
-    
+
     timerRef.current = setTimeout(() => {
       setPopoverOpen(false);
     }, 3000);
@@ -62,8 +62,8 @@ function Hero() {
       if (currentScrollY > 150 && currentScrollY > lastScrollY) {
         // Scrolling down
         if (!isHidden) {
-          animate('.hero-image-placeholder', {
-            rotate: '0.5turn',
+          animate('.hero-image-frame', {
+            rotate: '0.5',
             duration: 1500,
             easing: 'easeOutQuart',
             ...(isMobile ? { y: '20rem', x: 0 } : { x: '40rem', y: 0 }),
@@ -79,7 +79,7 @@ function Hero() {
       } else if (currentScrollY <= triggerThreshold) {
         // Scrolling up and reached within the top 70% of hero section
         if (isHidden) {
-          animate('.hero-image-placeholder', {
+          animate('.hero-image-frame', {
             rotate: '0turn',
             duration: 1500,
             easing: 'easeOutQuart',
@@ -107,34 +107,36 @@ function Hero() {
       <div className="hero-bg-text">HASBY</div>
 
       <div className="hero-inner">
-        <div className="hero-image-placeholder">
-          <ConfigProvider
-            theme={{
-              components: {
-                Popover: {
-                  colorBgElevated: '#ff5252',
-                  colorText: '#ffffff',
+        <div className="hero-image-frame">
+          <div className="hero-image-placeholder">
+            <ConfigProvider
+              theme={{
+                components: {
+                  Popover: {
+                    colorBgElevated: '#ff5252',
+                    colorText: '#ffffff',
+                  },
                 },
-              },
-            }}
-          >
-            <Popover 
-              content={<div className="fun-greeting">{greeting}</div>} 
-              trigger="click" 
-              open={popoverOpen}
-              onOpenChange={handleOpenChange}
-              placement="top"
-              overlayClassName="fun-popover"
+              }}
             >
-              <img 
-                src={profileImg} 
-                alt="Hasby Muhammad Raafi Prasetyo" 
-                className="hero-profile-img" 
-                onClick={handleImageClick}
-                style={{ cursor: 'pointer' }}
-              />
-            </Popover>
-          </ConfigProvider>
+              <Popover
+                content={<div className="fun-greeting">{greeting}</div>}
+                trigger="click"
+                open={popoverOpen}
+                onOpenChange={handleOpenChange}
+                placement="top"
+                overlayClassName="fun-popover"
+              >
+                <img
+                  src={profileImg}
+                  alt="Hasby Muhammad Raafi Prasetyo"
+                  className="hero-profile-img"
+                  onClick={handleImageClick}
+                  style={{ cursor: 'pointer' }}
+                />
+              </Popover>
+            </ConfigProvider>
+          </div>
         </div>
 
         <div className="hero-content">
@@ -148,10 +150,10 @@ function Hero() {
             <SplitText text="Raafi Prasetyo" delay={0.6} />
           </h1>
 
-            <p className="hero-desc">
-              Bachelor of Informatics Engineering Student who could do coding with write once, run anywhere,
-              and obviously a vibe coder 😁🤙
-            </p>
+          <p className="hero-desc">
+            Bachelor of Informatics Engineering Student who could do coding with write once, run anywhere,
+            and obviously a vibe coder 😁🤙
+          </p>
 
         </div>
 
