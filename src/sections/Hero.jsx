@@ -63,7 +63,7 @@ function Hero() {
         // Scrolling down
         if (!isHidden) {
           animate('.hero-image-frame', {
-            rotate: '0.5',
+            rotate: '0.5turn',
             duration: 1500,
             easing: 'easeOutQuart',
             ...(isMobile ? { y: '20rem', x: 0 } : { x: '40rem', y: 0 }),
