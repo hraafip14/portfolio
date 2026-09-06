@@ -3,13 +3,14 @@ import SplitText from '../components/animations/SplitText';
 import FadeUp from '../components/animations/FadeUp';
 
 const experiences = [
+  /*
   {
     period: '2026 – present',
     place: 'Ruangguru',
     location: 'Depok',
     title: 'Master Teacher Kalananti',
     tags: ['Part Time Teacher', 'Design a lesson plan', 'Hybrid session class', 'Teaching Coding with ScratchJr, Scratch, MIT App Inventor, and Python.'],
-  },
+  },*/
   {
     period: '2025 – 2026',
     place: 'Toko Bangunan Dinda Jaya',
