@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function FadeUp({ children, delay = 0, duration = 0.8, y = 50, className = '' }) {
+export default function FadeUp({ children, delay = 0, duration = 0.8, y = 50, className = '', triggerSelector = null }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function FadeUp({ children, delay = 0, duration = 0.8, y = 50, cl
       { y: y, opacity: 0 },
       {
         scrollTrigger: {
-          trigger: ref.current,
+          trigger: triggerSelector ? triggerSelector : ref.current,
           start: 'top 85%',
           toggleActions: 'play none none reverse',
         },
@@ -25,7 +25,7 @@ export default function FadeUp({ children, delay = 0, duration = 0.8, y = 50, cl
         delay: delay
       }
     );
-  }, [delay, duration, y]);
+  }, [delay, duration, y, triggerSelector]);
 
   return (
     <div ref={ref} className={className}>
