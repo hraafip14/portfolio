@@ -107,7 +107,7 @@ function Skills() {
               <button className={`skill-tab-btn ${activeTab === 1 ? 'active' : ''}`} onClick={() => setActiveTab(1)}>1</button>
               <button className={`skill-tab-btn ${activeTab === 2 ? 'active' : ''}`} onClick={() => setActiveTab(2)}>2</button>
               <button className={`skill-tab-btn ${activeTab === 3 ? 'active' : ''}`} onClick={() => setActiveTab(3)}>3</button>
-              <button className={`skill-tab-btn ${activeTab === 4 ? 'active' : ''}`} onClick={() => setActiveTab(4)}>$</button>
+              <button className={`skill-tab-btn ${activeTab === 4 ? 'active' : ''}`} onClick={() => setActiveTab(4)}>4</button>
             </div>
           </div>
 
